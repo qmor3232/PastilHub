@@ -64,3 +64,36 @@ def check_product_and_quantity():
         show_error("Please enter a valid quantity.")
         return None
     return product, quantity
+
+# ---------- Event 1 & 2: Hero buttons scroll to sections ----------
+
+@when("click", "#view-menu-btn")
+def go_to_menu(event):
+    get("menu").scrollIntoView({"behavior": "smooth"})
+
+
+@when("click", "#order-now-btn")
+def go_to_order(event):
+    get("order").scrollIntoView({"behavior": "smooth"})
+
+
+# ---------- Event 3: Add to Order ----------
+
+@when("click", ".add-btn")
+def add_to_order(event):
+    # Find out which product's button was clicked
+    product = event.currentTarget.getAttribute("data-product")
+
+    # Select that product in the order form
+    get("product-select").value = product
+
+    # Start with a quantity of 1 if nothing was typed yet
+    if read_quantity(get("quantity").value) == 0:
+        get("quantity").value = "1"
+
+    # Show the order summary right away and go to the order form
+    show_error("")
+    get("order-confirmation").innerHTML = ""
+    quantity = read_quantity(get("quantity").value)
+    get("order-summary").innerHTML = build_summary(product, quantity)
+    get("order").scrollIntoView({"behavior": "smooth"})
