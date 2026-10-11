@@ -97,3 +97,66 @@ def add_to_order(event):
     quantity = read_quantity(get("quantity").value)
     get("order-summary").innerHTML = build_summary(product, quantity)
     get("order").scrollIntoView({"behavior": "smooth"})
+
+# ---------- Event 4: Calculate Total ----------
+
+@when("click", "#calculate-btn")
+def calculate_total(event):
+    show_error("")
+    result = check_product_and_quantity()
+    if result is None:
+        return
+    product, quantity = result
+    get("order-confirmation").innerHTML = ""
+    get("order-summary").innerHTML = build_summary(product, quantity)
+
+
+# ---------- Event 5: Place Order ----------
+
+@when("click", "#place-order-btn")
+def place_order(event):
+    show_error("")
+
+    # Check the customer name
+    name = get("customer-name").value.strip()
+    if name == "":
+        show_error("Please enter your name.")
+        return
+
+    # Check the product and quantity
+    result = check_product_and_quantity()
+    if result is None:
+        return
+    product, quantity = result
+
+    # Calculate the total price
+    total = PRICES[product] * quantity
+    request = get("special-request").value.strip()
+
+    # Show the order summary and the confirmation message
+    get("order-summary").innerHTML = build_summary(product, quantity)
+
+    confirmation = f"""
+        <div class="confirm-box">
+            <p><strong>Thank you, {escape(name)}! Your order has been successfully placed.</strong></p>
+            <p>Product: {product}</p>
+            <p>Quantity: {quantity}</p>
+            <p>Total: ₱{total}</p>
+    """
+    if request != "":
+        confirmation += f"<p>Special Request: {escape(request)}</p>"
+    confirmation += "</div>"
+    get("order-confirmation").innerHTML = confirmation
+
+
+# ---------- Event 6: Clear Order ----------
+
+@when("click", "#clear-order-btn")
+def clear_order(event):
+    get("customer-name").value = ""
+    get("product-select").value = ""
+    get("quantity").value = ""
+    get("special-request").value = ""
+    get("order-summary").innerHTML = '<p class="muted">Your order summary will appear here.</p>'
+    get("order-confirmation").innerHTML = ""
+    show_error("")    
