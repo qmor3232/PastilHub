@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Pastilicious | Simple. Flavorful. Satisfying.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- PyScript (loads Python in the browser) -->
+  <link rel="stylesheet" href="https://pyscript.net/releases/2024.11.1/core.css">
+  <script type="module" src="https://pyscript.net/releases/2024.11.1/core.js"></script>
+</head>
+<body>
+
+  <!-- Reusable pastil drawing used by the menu cards -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="pastil-base" viewBox="0 0 120 100">
+      <rect x="2" y="30" width="116" height="64" rx="12" fill="#1b5e3a"/>
+      <rect x="7" y="35" width="106" height="54" rx="9" fill="#3a9560"/>
+      <line x1="10" y1="62" x2="110" y2="62" stroke="#2a7b4b" stroke-width="2"/>
+      <path d="M22 76 Q20 46 60 44 Q100 46 98 76 Q96 88 60 88 Q24 88 22 76Z" fill="#fffdf4"/>
+      <path d="M38 68 Q36 52 60 50 Q84 52 82 68 Q80 76 60 76 Q40 76 38 68Z" fill="#b8681f"/>
+      <g fill="none" stroke-linecap="round" stroke-width="3">
+        <path d="M44 66 Q54 56 64 64 T78 60" stroke="#e0963f"/>
+        <path d="M46 72 Q58 66 70 72" stroke="#8a4513"/>
+      </g>
+    </symbol>
+  </svg>
+
+  <!-- 1. NAVIGATION BAR -->
+  <header class="navbar">
+    <a href="#home" class="logo">PASTILICIOUS</a>
+    <nav class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#menu">Menu</a>
+      <a href="#order">Order</a>
+      <a href="#feedback">Feedback</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- 2. HERO -->
+    <section id="home" class="hero">
+      <div class="hero-text">
+        <h1>PASTILICIOUS</h1>
+        <p class="tagline">"Simple. Flavorful. Satisfying."</p>
+        <p>Enjoy delicious chicken pastil served with rice, prepared for anyone looking for a simple and satisfying meal.</p>
+        <div class="hero-buttons">
+          <button id="view-menu-btn" class="btn btn-primary">View Menu</button>
+          <button id="order-now-btn" class="btn btn-accent">Order Now</button>
+        </div>
+      </div>
+      <div class="hero-image" aria-hidden="true">
+        <!-- Pastil illustration: rice and shredded chicken on a banana leaf -->
+        <svg class="pastil-art" viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg" role="img">
+          <!-- steam -->
+          <g fill="none" stroke="#9bcfae" stroke-width="5" stroke-linecap="round">
+            <path d="M125 85 Q112 65 125 48 Q138 31 125 14"/>
+            <path d="M170 80 Q157 58 170 40 Q183 22 170 4"/>
+            <path d="M215 85 Q202 65 215 48 Q228 31 215 14"/>
+          </g>
+          <!-- banana leaf -->
+          <rect x="20" y="105" width="300" height="170" rx="30" fill="#1b5e3a"/>
+          <rect x="34" y="118" width="272" height="144" rx="22" fill="#3a9560"/>
+          <g stroke="#2a7b4b" stroke-width="3" stroke-linecap="round">
+            <line x1="50" y1="190" x2="290" y2="190"/>
+            <line x1="60" y1="135" x2="95" y2="190"/><line x1="130" y1="125" x2="150" y2="190"/>
+            <line x1="210" y1="125" x2="190" y2="190"/><line x1="280" y1="135" x2="245" y2="190"/>
+            <line x1="60" y1="245" x2="95" y2="190"/><line x1="130" y1="255" x2="150" y2="190"/>
+            <line x1="210" y1="255" x2="190" y2="190"/><line x1="280" y1="245" x2="245" y2="190"/>
+          </g>
+          <!-- rice -->
+          <path d="M75 205 Q70 135 170 130 Q270 135 265 205 Q262 240 170 240 Q78 240 75 205Z" fill="#fffdf4" stroke="#e8e2cc" stroke-width="3"/>
+          <g fill="#f1ead2">
+            <ellipse cx="105" cy="205" rx="7" ry="3" transform="rotate(-20 105 205)"/>
+            <ellipse cx="130" cy="225" rx="7" ry="3" transform="rotate(15 130 225)"/>
+            <ellipse cx="215" cy="228" rx="7" ry="3" transform="rotate(-15 215 228)"/>
+            <ellipse cx="240" cy="205" rx="7" ry="3" transform="rotate(25 240 205)"/>
+            <ellipse cx="170" cy="232" rx="7" ry="3"/>
+          </g>
+          <!-- shredded chicken -->
+          <path d="M110 190 Q105 145 170 142 Q235 145 230 190 Q225 212 170 212 Q115 212 110 190Z" fill="#b8681f"/>
+          <g fill="none" stroke-linecap="round" stroke-width="5">
+            <path d="M125 185 Q145 165 165 180 T205 170" stroke="#8a4513"/>
+            <path d="M130 170 Q155 155 175 168 T218 165" stroke="#e0963f"/>
+            <path d="M120 198 Q150 185 172 197 T222 190" stroke="#e0963f"/>
+            <path d="M140 155 Q165 148 190 158" stroke="#8a4513"/>
+            <path d="M150 205 Q175 195 200 205" stroke="#8a4513"/>
+          </g>
+          <!-- chili -->
+          <path d="M215 150 Q240 140 252 160 Q238 156 222 162Z" fill="#d93a2b"/>
+          <path d="M215 150 Q212 143 218 140" fill="none" stroke="#2a7b4b" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+        <span class="plate-label">Our signature chicken pastil</span>
+      </div>
+    </section>
+
+    <!-- 3. ABOUT -->
+    <section id="about" class="section">
+      <h2>About Pastilicious</h2>
+      <div class="two-col">
+        <div class="card">
+          <h3>Who We Are</h3>
+          <p>Pastilicious is a food business focused on serving flavorful chicken pastil with rice. We aim to provide a simple and satisfying meal that customers can enjoy anytime.</p>
+        </div>
+        <div class="card">
+          <h3>What We Offer</h3>
+          <ul class="check-list">
+            <li>Chicken pastil</li>
+            <li>Rice meals</li>
+            <li>Flavorful food</li>
+            <li>Simple ordering experience</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. MENU -->
+    <section id="menu" class="section alt">
+      <h2>Our Menu</h2>
+      <div class="grid-4">
+        <article class="card product">
+          <div class="product-icon"><svg viewBox="0 0 120 100" aria-hidden="true"><use href="#pastil-base"/></svg></div>
+          <h3>Regular Chicken Pastil</h3>
+          <p>Classic shredded chicken pastil served with rice.</p>
+          <p class="price">₱35</p>
+          <button class="btn btn-primary add-btn" data-product="Regular Chicken Pastil">Add to Order</button>
+        </article>
+        <article class="card product">
+          <div class="product-icon"><svg viewBox="0 0 120 100" aria-hidden="true"><use href="#pastil-base"/><path d="M80 52 Q100 44 108 60 Q96 56 84 62Z" fill="#d93a2b"/><path d="M80 52 Q78 46 83 43" fill="none" stroke="#1b5e3a" stroke-width="2.5" stroke-linecap="round"/></svg></div>
+          <h3>Spicy Chicken Pastil</h3>
+          <p>Chicken pastil with a spicy kick for customers who enjoy bold flavors.</p>
+          <p class="price">₱40</p>
+          <button class="btn btn-primary add-btn" data-product="Spicy Chicken Pastil">Add to Order</button>
+        </article>
+        <article class="card product">
+          <div class="product-icon"><svg viewBox="0 0 120 100" aria-hidden="true"><use href="#pastil-base"/><ellipse cx="82" cy="58" rx="15" ry="11" fill="#fff"/><circle cx="82" cy="58" r="6" fill="#f4a21e"/></svg></div>
+          <h3>Chicken Pastil with Egg</h3>
+          <p>Chicken pastil served with rice and egg.</p>
+          <p class="price">₱45</p>
+          <button class="btn btn-primary add-btn" data-product="Chicken Pastil with Egg">Add to Order</button>
+        </article>
+        <article class="card product">
+          <div class="product-icon"><svg viewBox="0 0 120 100" aria-hidden="true"><use href="#pastil-base"/><g fill="none" stroke-linecap="round" stroke-width="3"><path d="M34 58 Q60 38 86 58" stroke="#b8681f"/><path d="M40 52 Q60 40 80 52" stroke="#e0963f"/><path d="M46 46 Q60 38 74 46" stroke="#8a4513"/></g></svg></div>
+          <h3>Extra Chicken Pastil</h3>
+          <p>Chicken pastil with an extra serving of flavorful shredded chicken.</p>
+          <p class="price">₱50</p>
+          <button class="btn btn-primary add-btn" data-product="Extra Chicken Pastil">Add to Order</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- 5. ORDER -->
+    <section id="order" class="section">
+      <h2>Place Your Order</h2>
+      <div class="two-col">
+        <div class="card">
+          <label for="customer-name">Customer Name</label>
+          <input type="text" id="customer-name" placeholder="Enter your name">
+
+          <label for="product-select">Select Product</label>
+          <select id="product-select">
+            <option value="">-- Select a product --</option>
+            <option value="Regular Chicken Pastil">Regular Chicken Pastil - ₱35</option>
+            <option value="Spicy Chicken Pastil">Spicy Chicken Pastil - ₱40</option>
+            <option value="Chicken Pastil with Egg">Chicken Pastil with Egg - ₱45</option>
+            <option value="Extra Chicken Pastil">Extra Chicken Pastil - ₱50</option>
+          </select>
+
+          <label for="quantity">Quantity</label>
+          <input type="number" id="quantity" min="1" placeholder="e.g. 2">
+
+          <label for="special-request">Special Request (optional)</label>
+          <input type="text" id="special-request" placeholder="e.g. Less spicy">
+
+          <div class="btn-row">
+            <button id="calculate-btn" class="btn btn-primary">Calculate Total</button>
+            <button id="place-order-btn" class="btn btn-accent">Place Order</button>
+            <button id="clear-order-btn" class="btn btn-outline">Clear Order</button>
+          </div>
+          <p id="order-error" class="message error" role="alert"></p>
+        </div>
+
+        <div class="card result-card">
+          <h3>Order Summary</h3>
+          <div id="order-summary" class="output"><p class="muted">Your order summary will appear here.</p></div>
+          <div id="order-confirmation" class="output"></div>
+        </div>
+      </div>
+
+      <!-- 9. QUICK PRICE CALCULATOR -->
+      <div class="card calculator">
+        <h3>Quick Price Calculator</h3>
+        <div class="calc-row">
+          <div>
+            <label for="calc-product">Product</label>
+            <select id="calc-product">
+              <option value="">-- Select a product --</option>
+              <option value="Regular Chicken Pastil">Regular Chicken Pastil - ₱35</option>
+              <option value="Spicy Chicken Pastil">Spicy Chicken Pastil - ₱40</option>
+              <option value="Chicken Pastil with Egg">Chicken Pastil with Egg - ₱45</option>
+              <option value="Extra Chicken Pastil">Extra Chicken Pastil - ₱50</option>
+            </select>
+          </div>
+          <div>
+            <label for="calc-quantity">Quantity</label>
+            <input type="number" id="calc-quantity" min="1" placeholder="e.g. 3">
+          </div>
+          <button id="calc-btn" class="btn btn-primary">Calculate</button>
+          <button id="calc-reset-btn" class="btn btn-outline">Reset Calculator</button>
+        </div>
+        <div id="calc-result" class="output"></div>
+      </div>
+    </section>
+
+    <!-- 10. FEEDBACK -->
+    <section id="feedback" class="section alt">
+      <h2>We'd Love Your Feedback</h2>
+      <div class="two-col">
+        <form id="feedback-form" class="card" novalidate>
+          <label for="fb-name">Name</label>
+          <input type="text" id="fb-name" placeholder="Your name">
+
+          <label for="fb-rating">Rating</label>
+          <select id="fb-rating">
+            <option value="">-- Select a rating --</option>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="3">★★★</option>
+            <option value="2">★★</option>
+            <option value="1">★</option>
+          </select>
+
+          <label for="fb-comment">Comment</label>
+          <textarea id="fb-comment" rows="4" placeholder="Tell us what you think"></textarea>
+
+          <button type="submit" id="feedback-btn" class="btn btn-primary">Submit Feedback</button>
+          <p id="feedback-message" class="message" role="alert"></p>
+        </form>
+
+        <div class="card">
+          <h3>Customer Reviews</h3>
+          <div id="reviews">
+            <p id="no-reviews" class="muted">No reviews yet. Be the first to leave one!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. WHY CHOOSE -->
+    <section class="section">
+      <h2>Why Choose Pastilicious</h2>
+      <div class="grid-4">
+        <div class="card center"><div class="big-icon">😋</div><h3>Delicious</h3><p>Enjoy flavorful chicken pastil prepared for a satisfying meal.</p></div>
+        <div class="card center"><div class="big-icon">💰</div><h3>Affordable</h3><p>Simple meals at reasonable prices.</p></div>
+        <div class="card center"><div class="big-icon">🍽️</div><h3>Filling</h3><p>Chicken pastil served with rice for a satisfying meal.</p></div>
+        <div class="card center"><div class="big-icon">📱</div><h3>Convenient</h3><p>Easy menu browsing and ordering through our website.</p></div>
+      </div>
+    </section>
+
+    <!-- 12. HOW IT WORKS -->
+    <section class="section alt">
+      <h2>How Pastilicious Works</h2>
+      <div class="grid-4">
+        <div class="card center step"><span class="step-num">01</span><div class="big-icon">📖</div><h3>Browse the Menu</h3></div>
+        <div class="card center step"><span class="step-num">02</span><div class="big-icon">👆</div><h3>Choose Your Meal</h3></div>
+        <div class="card center step"><span class="step-num">03</span><div class="big-icon">📝</div><h3>Place Your Order</h3></div>
+        <div class="card center step"><span class="step-num">04</span><div class="big-icon">🍛</div><h3>Enjoy Your Pastil</h3></div>
+      </div>
+    </section>
+
+    <!-- 13. CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="card center contact-card">
+        <h3>Pastilicious</h3>
+        <p>Thank you for visiting Pastilicious!</p>
+        <p><strong>Email:</strong> <a href="mailto:pastilicious@example.com">pastilicious@example.com</a></p>
+        <p><strong>Phone:</strong> 09XX-XXX-XXXX</p>
+        <p><strong>Location:</strong> Cebu City, Philippines</p>
+        <p class="muted small">Note: This is sample contact information for a school project, not real business details.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 14. FOOTER -->
+  <footer class="footer">
+    <h3>PASTILICIOUS</h3>
+    <p>"Simple. Flavorful. Satisfying."</p>
+    <p class="small">© 2026 Pastilicious — Event-Driven Programming Final Project</p>
+  </footer>
+
+  <!-- All interactivity lives in main.py -->
+  <script type="py" src="./main.py"></script>        
+</body>
+</html>
