@@ -215,6 +215,86 @@
         </div>
         <div id="calc-result" class="output"></div>
       </div>
-    </section>    
+    </section>
+
+    <!-- 10. FEEDBACK -->
+    <section id="feedback" class="section alt">
+      <h2>We'd Love Your Feedback</h2>
+      <div class="two-col">
+        <form id="feedback-form" class="card" novalidate>
+          <label for="fb-name">Name</label>
+          <input type="text" id="fb-name" placeholder="Your name">
+
+          <label for="fb-rating">Rating</label>
+          <select id="fb-rating">
+            <option value="">-- Select a rating --</option>
+            <option value="5">★★★★★</option>
+            <option value="4">★★★★</option>
+            <option value="3">★★★</option>
+            <option value="2">★★</option>
+            <option value="1">★</option>
+          </select>
+
+          <label for="fb-comment">Comment</label>
+          <textarea id="fb-comment" rows="4" placeholder="Tell us what you think"></textarea>
+
+          <button type="submit" id="feedback-btn" class="btn btn-primary">Submit Feedback</button>
+          <p id="feedback-message" class="message" role="alert"></p>
+        </form>
+
+        <div class="card">
+          <h3>Customer Reviews</h3>
+          <div id="reviews">
+            <p id="no-reviews" class="muted">No reviews yet. Be the first to leave one!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 11. WHY CHOOSE -->
+    <section class="section">
+      <h2>Why Choose Pastilicious</h2>
+      <div class="grid-4">
+        <div class="card center"><div class="big-icon">😋</div><h3>Delicious</h3><p>Enjoy flavorful chicken pastil prepared for a satisfying meal.</p></div>
+        <div class="card center"><div class="big-icon">💰</div><h3>Affordable</h3><p>Simple meals at reasonable prices.</p></div>
+        <div class="card center"><div class="big-icon">🍽️</div><h3>Filling</h3><p>Chicken pastil served with rice for a satisfying meal.</p></div>
+        <div class="card center"><div class="big-icon">📱</div><h3>Convenient</h3><p>Easy menu browsing and ordering through our website.</p></div>
+      </div>
+    </section>
+
+    <!-- 12. HOW IT WORKS -->
+    <section class="section alt">
+      <h2>How Pastilicious Works</h2>
+      <div class="grid-4">
+        <div class="card center step"><span class="step-num">01</span><div class="big-icon">📖</div><h3>Browse the Menu</h3></div>
+        <div class="card center step"><span class="step-num">02</span><div class="big-icon">👆</div><h3>Choose Your Meal</h3></div>
+        <div class="card center step"><span class="step-num">03</span><div class="big-icon">📝</div><h3>Place Your Order</h3></div>
+        <div class="card center step"><span class="step-num">04</span><div class="big-icon">🍛</div><h3>Enjoy Your Pastil</h3></div>
+      </div>
+    </section>
+
+    <!-- 13. CONTACT -->
+    <section id="contact" class="section">
+      <h2>Contact</h2>
+      <div class="card center contact-card">
+        <h3>Pastilicious</h3>
+        <p>Thank you for visiting Pastilicious!</p>
+        <p><strong>Email:</strong> <a href="mailto:pastilicious@example.com">pastilicious@example.com</a></p>
+        <p><strong>Phone:</strong> 09XX-XXX-XXXX</p>
+        <p><strong>Location:</strong> Cebu City, Philippines</p>
+        <p class="muted small">Note: This is sample contact information for a school project, not real business details.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- 14. FOOTER -->
+  <footer class="footer">
+    <h3>PASTILICIOUS</h3>
+    <p>"Simple. Flavorful. Satisfying."</p>
+    <p class="small">© 2026 Pastilicious — Event-Driven Programming Final Project</p>
+  </footer>
+
+  <!-- All interactivity lives in main.py -->
+  <script type="py" src="./main.py"></script>        
 </body>
 </html>
