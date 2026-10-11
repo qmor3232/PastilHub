@@ -159,4 +159,83 @@ def clear_order(event):
     get("special-request").value = ""
     get("order-summary").innerHTML = '<p class="muted">Your order summary will appear here.</p>'
     get("order-confirmation").innerHTML = ""
-    show_error("")    
+    show_error("")   
+
+# ---------- Quick Price Calculator ----------
+
+@when("click", "#calc-btn")
+def calculate_quick_price(event):
+    product = get("calc-product").value
+    quantity = read_quantity(get("calc-quantity").value)
+    result_box = get("calc-result")
+
+    if product == "":
+        result_box.innerHTML = '<p class="message error">Please select a product.</p>'
+        return
+    if quantity == 0:
+        result_box.innerHTML = '<p class="message error">Please enter a valid quantity.</p>'
+        return
+
+    # Calculate the total price
+    price = PRICES[product]
+    total = price * quantity
+
+    result_box.innerHTML = f"""
+        <div class="summary-box">
+            <p>{product}: ₱{price}</p>
+            <p>Quantity: {quantity}</p>
+            <p class="total">Total: ₱{total}</p>
+        </div>
+    """
+
+
+# ---------- Event 8: Reset Calculator ----------
+
+@when("click", "#calc-reset-btn")
+def reset_calculator(event):
+    get("calc-product").value = ""
+    get("calc-quantity").value = ""
+    get("calc-result").innerHTML = ""
+
+
+# ---------- Event 7: Feedback form submission ----------
+
+@when("submit", "#feedback-form")
+def submit_feedback(event):
+    # Stop the browser from reloading the page
+    event.preventDefault()
+
+    name = get("fb-name").value.strip()
+    rating = get("fb-rating").value
+    comment = get("fb-comment").value.strip()
+    message = get("feedback-message")
+
+    # Check that all fields are filled in
+    if name == "" or rating == "" or comment == "":
+        message.className = "message error"
+        message.innerText = "Please fill in your name, rating, and comment."
+        return
+
+    # Build the review card (stars are repeated based on the rating)
+    stars = "★" * int(rating)
+    card = document.createElement("div")
+    card.className = "review"
+    card.innerHTML = f"""
+        <div class="stars">{stars}</div>
+        <p>"{escape(comment)}"</p>
+        <p class="muted">— {escape(name)}</p>
+    """
+
+    # Add the new card at the top of the reviews list
+    reviews = get("reviews")
+    placeholder = get("no-reviews")
+    if placeholder is not None:
+        placeholder.remove()
+    reviews.insertBefore(card, reviews.firstChild)
+
+    # Show thank-you message and clear the form
+    message.className = "message success"
+    message.innerText = "Thank you for your feedback!"
+    get("fb-name").value = ""
+    get("fb-rating").value = ""
+    get("fb-comment").value = ""
