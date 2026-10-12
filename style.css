@@ -54,3 +54,94 @@ h2::after {
   box-shadow: 22px 0 0 -2px var(--accent);
   transform: translateX(-11px);
 }
+
+/* ===== Navigation (banana leaf green bar) ===== */
+.navbar {
+  position: sticky; top: 0; z-index: 10;
+  display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 8px;
+  padding: 10px 24px;
+  background: var(--veins-light), var(--green-dark);
+  border-bottom: 4px solid var(--accent);
+}
+.logo {
+  color: var(--white); text-decoration: none;
+  font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 1.5rem; letter-spacing: 1.5px;
+}
+.nav-links { display: flex; flex-wrap: wrap; gap: 4px; }
+.nav-links a {
+  color: var(--white); text-decoration: none;
+  padding: 8px 14px; border-radius: 20px; font-weight: 600; font-size: 0.95rem;
+}
+.nav-links a:hover { background: var(--accent); color: var(--text); }
+
+/* ===== Hero (full-width leaf background) ===== */
+.hero {
+  display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 30px;
+  padding: 70px max(24px, calc((100% - 1100px) / 2));
+  background: var(--veins), linear-gradient(135deg, var(--green-light) 0%, #f2fbf4 60%, #fff4d6 100%);
+}
+.hero h1 { font-size: 3.6rem; letter-spacing: 2px; }
+.tagline { font-family: "Fredoka", sans-serif; font-size: 1.4rem; color: var(--accent-dark); font-weight: 600; }
+.hero-buttons { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 22px; }
+.hero-image { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.pastil-art { width: 100%; max-width: 380px; height: auto; filter: drop-shadow(0 10px 14px rgba(27, 94, 58, 0.3)); }
+.plate-label { font-family: "Fredoka", sans-serif; font-weight: 600; color: var(--green-dark); }
+
+/* ===== Sections & cards ===== */
+.section { padding: 64px 24px; }
+.section.alt { background: var(--veins), var(--green-light); }
+.section > * { max-width: 1100px; margin-left: auto; margin-right: auto; }
+
+.card {
+  background: var(--white); border-radius: 18px; padding: 24px;
+  box-shadow: var(--shadow);
+  border-top: 6px solid var(--green-mid);
+}
+.center { text-align: center; }
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+.check-list { list-style: none; padding: 0; margin: 0; }
+.check-list li { padding: 4px 0; }
+.check-list li::before { content: "🌿 "; }
+
+/* ===== Menu cards: look like a pastil packet tied with string ===== */
+.product {
+  display: flex; flex-direction: column; text-align: center;
+  border-top: 0; position: relative; overflow: hidden;
+  padding-top: 0;
+}
+.product::before {              /* leaf-wrap strip at the top */
+  content: ""; display: block; height: 14px; margin: 0 -24px 14px;
+  background: var(--veins-light), var(--green-dark);
+  border-bottom: 4px solid var(--accent);   /* the "string" */
+}
+.product-icon {
+  background: var(--green-light); border-radius: 14px;
+  padding: 10px; margin-bottom: 12px;
+}
+.product-icon svg { width: 100%; max-width: 130px; height: auto; display: block; margin: 0 auto; }
+.product p { flex-grow: 1; margin: 0 0 12px; }
+.price {
+  display: inline-block; align-self: center; flex-grow: 0 !important;
+  background: var(--accent); color: var(--text);
+  font-family: "Fredoka", sans-serif; font-size: 1.5rem; font-weight: 700;
+  padding: 2px 18px; border-radius: 30px; margin-bottom: 14px !important;
+}
+
+.big-icon {
+  width: 68px; height: 68px; margin: 0 auto 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 2rem; background: var(--green-light); border-radius: 50%;
+  border: 3px solid var(--accent);
+}
+
+/* How it works: step number looks like a rice-plate badge */
+.step { position: relative; }
+.step-num {
+  display: inline-block; margin-bottom: 8px;
+  background: var(--green-dark); color: var(--white);
+  font-family: "Fredoka", sans-serif; font-weight: 700; font-size: 1.1rem;
+  padding: 2px 14px; border-radius: 20px;
+}
