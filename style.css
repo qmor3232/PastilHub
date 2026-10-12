@@ -1,0 +1,56 @@
+/* ==========================================================
+   Pastilicious - style.css
+   Design idea: chicken pastil is rice + shredded chicken
+   wrapped in a banana leaf. So the site uses banana-leaf
+   greens, leaf-vein patterns, "wrapped" cards, and warm
+   chicken-and-egg colors for highlights.
+   ========================================================== */
+
+/* ===== Color theme ===== */
+:root {
+  --green-dark: #1b5e3a;     /* banana leaf (dark) */
+  --green-mid: #3a9560;      /* banana leaf (fresh) */
+  --green-light: #dcf1e1;    /* light leaf */
+  --bg: #f7fcf8;
+  --text: #25302a;
+  --accent: #f4a21e;         /* egg yolk / warm food highlight */
+  --accent-dark: #c9740a;    /* shredded chicken */
+  --rice: #fffdf4;
+  --white: #fff;
+  --shadow: 0 6px 16px rgba(27, 94, 58, 0.14);
+
+  /* banana-leaf veins: thin diagonal lines */
+  --veins: repeating-linear-gradient(115deg, transparent 0 34px, rgba(27, 94, 58, 0.08) 34px 36px);
+  --veins-light: repeating-linear-gradient(115deg, transparent 0 34px, rgba(255, 255, 255, 0.1) 34px 36px);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+
+body {
+  margin: 0;
+  font-family: "Nunito", "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+h1, h2, h3 {
+  font-family: "Fredoka", "Segoe UI", Arial, sans-serif;
+  color: var(--green-dark);
+  margin: 0 0 10px;
+  line-height: 1.2;
+}
+h2 { text-align: center; font-size: 2.1rem; margin-bottom: 34px; }
+
+/* small banana-leaf shaped divider under each section title */
+h2::after {
+  content: "";
+  display: block;
+  width: 64px; height: 14px;
+  margin: 10px auto 0;
+  background: var(--green-mid);
+  border-radius: 14px 0 14px 0;
+  box-shadow: 22px 0 0 -2px var(--accent);
+  transform: translateX(-11px);
+}
